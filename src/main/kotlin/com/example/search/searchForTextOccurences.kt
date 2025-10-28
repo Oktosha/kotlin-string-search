@@ -36,12 +36,8 @@ fun searchForTextOccurrences(
             val lines = BufferedReader(FileReader(path.toFile())).lineSequence().asFlow()
             val matchedLines = lines.withIndex().map {
                 val matches = regex.findAll(it.value)
-                val occurrences = matches.map { match -> OccurrenceData(path, it.index, match.range.first()) as Occurrence }
-                return@map occurrences
-            }.filter {
-                it.iterator().hasNext()
-            }.map {
-                it.asFlow()
+                val occurrences = matches.map { match -> OccurrenceData(path, it.index + 1, match.range.first()) as Occurrence }
+                return@map occurrences.asFlow()
             }
             return@map matchedLines.flattenConcat()
         } catch (e: Exception) {
