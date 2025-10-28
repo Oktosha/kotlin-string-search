@@ -4,7 +4,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flattenConcat
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.withIndex
@@ -40,9 +39,9 @@ fun searchForTextOccurrences(
                 return@map occurrences.asFlow()
             }
             return@map matchedLines.flattenConcat()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             // the decision is to ignore entries we have trouble reading
-            return@map emptyFlow<Occurrence>();
+            return@map emptyFlow<Occurrence>()
         }
     }.flattenConcat()
 }

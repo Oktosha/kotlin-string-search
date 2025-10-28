@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
-import kotlin.io.path.walk
 
 class SearchTest {
     @Test
